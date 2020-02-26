@@ -30,7 +30,7 @@
 
 <#tdb> rdf:type tdb:DatasetTDB ;
     tdb:location "/fuseki-base/databases/tdb" ;
-    tdb:unionDefaultGraph false ;
+    tdb:unionDefaultGraph true ;
     .
 
 <#lucene> a text:TextIndexLucene ;
