@@ -6,7 +6,7 @@ Available also in Docker Hub: [maximelefrancois86/fuseki](https://hub.docker.com
 
 The Fuseki administrative interface is accessible at `http://localhost:3030` with the admin password defined as `docker run` parameter (see `Run` below).
 
-The container has a preconfigured service/dataset `ds` that has a Lucene [text index](https://jena.apache.org/documentation/query/text-query.html) (see [assembler.ttl](http://gitlab.emse.fr/saref/fuseki-server/blob/master/assembler.ttl) for configuration).
+The container has a preconfigured service/dataset `ds` that has a Lucene [text index](https://jena.apache.org/documentation/query/text-query.html) (see [assembler.ttl](https://gitlab.emse.fr/maxime.lefrancois/fuseki-docker/blob/master/assembler.ttl) for configuration).
 
 The data can be accessed via the default endpoints:
 * [SPARQL 1.1 query](https://www.w3.org/TR/sparql11-query/): `http://localhost:3030/ds/sparql`
