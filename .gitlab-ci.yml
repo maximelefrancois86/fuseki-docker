@@ -5,7 +5,7 @@ build:
     entrypoint: [""]
   script:
     - echo "{\"auths\":{\"$DOCKER_REGISTRY\":{\"username\":\"$DOCKER_REGISTRY_USER\",\"password\":\"$DOCKER_REGISTRY_PASSWORD\"}}}" > /kaniko/.docker/config.json
-    - /kaniko/executor --context application --dockerfile application/dockerfile --destination $DOCKER_REGISTRY_IMAGE:$CI_COMMIT_SHORT_SHA
+    - /kaniko/executor --context application --dockerfile application/Dockerfile --destination $DOCKER_REGISTRY_IMAGE:$CI_COMMIT_SHORT_SHA
   only:
     - master 
 
