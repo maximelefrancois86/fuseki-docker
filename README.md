@@ -36,3 +36,8 @@ RUN chgrp -R 0 $FUSEKI_BASE \
 `docker run --rm -it -p 3030:3030 --name fuseki -e ADMIN_PASSWORD=[PASSWORD] -e ENABLE_DATA_WRITE=[true|false] -e ENABLE_UPDATE=[true|false] -e ENABLE_UPLOAD=[true|false] maximelefrancois86/fuseki`
 
 The same command can be used to pull and run the container from Docker Hub (no need to build the image first).
+
+
+# Acknowledgement
+
+Forked from https://hub.docker.com/u/secoresearch
