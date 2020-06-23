@@ -19,11 +19,7 @@
     #fuseki:serviceUpload     "upload" ;    # Non-SPARQL upload service
     #fuseki:serviceReadWriteGraphStore "data" ;     # SPARQL Graph store protocol
     fuseki:serviceReadGraphStore    "data" ;     # SPARQL Graph store protocol (read only)
-    fuseki:dataset           <#dataset> ;
-    .
-
-<#dataset> rdf:type text:TextDataset ;
-    text:dataset <#tdb> ;
+    fuseki:dataset           <#tdb> ;
     .
 
 <#tdb> rdf:type tdb:DatasetTDB ;
