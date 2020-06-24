@@ -13,24 +13,8 @@
 @prefix :        <#> .
 
 [] rdf:type fuseki:Server ;
-   # Server-wide context parameters can be given here.
-   # For example, to set query timeouts: on a server-wide basis:
-   # Format 1: "1000" -- 1 second timeout
-   # Format 2: "10000,60000" -- 10s timeout to first result, then 60s timeout to for rest of query.
-   # See java doc for ARQ.queryTimeout
-   ja:context [ ja:cxtName "arq:queryTimeout" ;  ja:cxtValue "60000" ] ;
-
-   # Load custom code (rarely needed)
-   # ja:loadClass "your.code.Class" ;
-   ja:loadClass "fi.seco.silk.arq.SilkFunctions" ;
-   ja:loadClass "fi.seco.spatial.arq.SpatialFunctions" .
+   ja:context [ ja:cxtName "arq:queryTimeout" ;  ja:cxtValue "60000" ] .
 
 # TDB
 tdb:DatasetTDB  rdfs:subClassOf  ja:RDFDataset .
 tdb:GraphTDB    rdfs:subClassOf  ja:Model .
-
-# Text
-[] ja:loadClass "org.apache.jena.query.text.TextQuery" .
-text:TextDataset      rdfs:subClassOf   ja:RDFDataset .
-text:TextIndexLucene  rdfs:subClassOf   text:TextIndex .
-

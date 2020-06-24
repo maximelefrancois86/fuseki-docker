@@ -13,16 +13,13 @@
 @prefix :        <#> .
 
 <#service> rdf:type fuseki:Service ;
-    fuseki:name              "kg" ;   # http://host:port/ds
-    fuseki:serviceQuery      "sparql" ;    # SPARQL query service
-    #fuseki:serviceUpdate     "update" ;    # SPARQL update service
-    #fuseki:serviceUpload     "upload" ;    # Non-SPARQL upload service
-    #fuseki:serviceReadWriteGraphStore "data" ;     # SPARQL Graph store protocol
-    fuseki:serviceReadGraphStore    "data" ;     # SPARQL Graph store protocol (read only)
-    fuseki:dataset           <#tdb> ;
-    .
+    fuseki:name              "kg" ;
+    fuseki:serviceQuery      "sparql" ;
+    #fuseki:serviceUpdate     "update" ;
+    #fuseki:serviceUpload     "upload" ;
+    #fuseki:serviceReadWriteGraphStore    "data" ;
+    fuseki:serviceReadGraphStore    "data" ;
+    fuseki:dataset           <#tdb> .
 
 <#tdb> rdf:type tdb:DatasetTDB ;
-    tdb:location "/fuseki-base/databases/tdb" ;
-    tdb:unionDefaultGraph true ;
-    .
+    tdb:location "db" .

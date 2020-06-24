@@ -16,29 +16,35 @@
 
 set -e
 
-if [ ! -f "$FUSEKI_BASE/shiro.ini" ] ; then
+echo "hello"
+
+if [ ! -f "initialized" ] ; then
   # First time
   echo "###################################"
   echo "Initializing Apache Jena Fuseki"
   echo ""
-  cp "$FUSEKI_HOME/shiro.ini" "$FUSEKI_BASE/shiro.ini"
   if [ -z "$ADMIN_PASSWORD" ] ; then
-    ADMIN_PASSWORD=$(pwgen -s 15)
+    ADMIN_PASSWORD=$(gpg -q --homedir $.gnupg --gen-random --armor 1 15)
+    #rm -r -f $FUSEKI_HOME/.gnupg
     echo "Randomly generated admin password:"
     echo ""
-    echo "admin=$ADMIN_PASSWORD"
   fi
+  if [ -n "$FUSEKI_CONTEXT" ] ; then
+    for file in $JETTY_BASE/webapps/* ; do mv $file $JETTY_BASE/webapps/$FUSEKI_CONTEXT.jar ; done
+  fi
+  echo "admin=$ADMIN_PASSWORD"
   echo ""
   echo "###################################"
+  touch "initialized"
 fi
 
 # $ADMIN_PASSWORD can always override
 if [ -n "$ADMIN_PASSWORD" ] ; then
-  sed -i "s/^admin=.*/admin=$ADMIN_PASSWORD/" "$FUSEKI_BASE/shiro.ini"
+  sed -i "s/^admin=.*/admin=$ADMIN_PASSWORD/" "$FUSEKI_HOME/shiro.ini"
 fi
 
 test "${ENABLE_DATA_WRITE}" = true && sed -i 's/\(fuseki:serviceReadGraphStore\)/#\1/' $ASSEMBLER && sed -i 's/#\s*\(fuseki:serviceReadWriteGraphStore\)/\1/' $ASSEMBLER
 test "${ENABLE_UPDATE}" = true && sed -i 's/#\s*\(fuseki:serviceUpdate\)/\1/' $ASSEMBLER
-test "${ENABLE_UPLOAD}" = true && sed -i 's/#\s*\(fuseki:serviceUpload\)/\1/' $ASSEMBLER 
+test "${ENABLE_UPLOAD}" = true && sed -i 's/#\s*\(fuseki:serviceUpload\)/\1/' $ASSEMBLER
 
 exec "$@"
