@@ -32,7 +32,7 @@
     fuseki:dataset           <#kg-rdfs-tdb> .
 
 <#kg-rdfs-tdb> rdf:type tdb:DatasetTDB ;
-    tdb:location "db" ;
+    tdb:location "db2" ;
     ja:defaultGraph <#inferenceModel> .
 
 <#inferenceModel> rdf:type ja:InfModel ;
