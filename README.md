@@ -10,15 +10,14 @@ The container has a preconfigured service/dataset `kg` (see [assembler.ttl](http
 
 The dataset is stored in the container at `/var/lib/jetty/db`. This volume can be mounted to a folder outside the container with docker option `-v /some/path:/var/lib/jetty/db`
 
-
 The data can be accessed via the default endpoints:
 * [SPARQL 1.1 query](https://www.w3.org/TR/sparql11-query/): `http://localhost:8080/<ctx>/ds/sparql`
-* [Graph Store HTTP Protocol](https://www.w3.org/TR/sparql11-http-rdf-update/) (read-only): `http://localhost:8080/<ctx>/ds/data`
 
-Other endpoints can be enabled, as well (see the Run section for instructions):
+Other endpoints are enabled, as well (see the Run section for instructions):
 * [SPARQL 1.1 Update](https://www.w3.org/TR/sparql11-update/): `http://localhost:8080/<ctx>/ds/update`
 * Graph Store HTTP Protocol with write access: `http://localhost:8080/<ctx>/ds/data`
 * File Upload: `http://localhost:8080/<ctx>/ds/upload`
+* [Graph Store HTTP Protocol](https://www.w3.org/TR/sparql11-http-rdf-update/): `http://localhost:8080/<ctx>/ds/data`
 
 **Note on running in OpenShift**, if you use this image as a parent image (e.g. use your own Dockerfile to load the data inside the image using TDBLOADER): as containers are run as an arbitrary user, you'll have to ensure the write permission on the TDB and index directories, e.g. by adding the following lines in your Dockerfile after the tdbloader and indexing commands:
 
@@ -36,7 +35,7 @@ RUN chgrp -R 0 $FUSEKI_BASE \
 
 Run and hold 
 
-`docker run --rm -it -p 8080:8080 --name fuseki [-e JETTY_CONTEXT="ctx"] [-e ADMIN_PASSWORD="pw"] [-e ENABLE_DATA_WRITE= (true|false)] [-e ENABLE_UPDATE=(true|false)] [-e ENABLE_UPLOAD=(true|false)] maximelefrancois86/fuseki`
+`docker run --rm -it -p 8080:8080 -v /some/path:/var/lib/jetty/db --name fuseki [-e JETTY_CONTEXT="ctx"] [-e ADMIN_PASSWORD="pw"] maximelefrancois86/fuseki`
 
 The same command can be used to pull and run the container from Docker Hub (no need to build the image first).
 

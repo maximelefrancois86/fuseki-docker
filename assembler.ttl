@@ -12,14 +12,32 @@
 @prefix schema:  <http://schema.org/> .
 @prefix :        <#> .
 
-<#service> rdf:type fuseki:Service ;
+<#kg> rdf:type fuseki:Service ;
     fuseki:name              "kg" ;
     fuseki:serviceQuery      "sparql" ;
-    #fuseki:serviceUpdate     "update" ;
-    #fuseki:serviceUpload     "upload" ;
-    #fuseki:serviceReadWriteGraphStore    "data" ;
-    fuseki:serviceReadGraphStore    "data" ;
-    fuseki:dataset           <#tdb> .
+    fuseki:serviceUpdate     "update" ;
+    fuseki:serviceUpload     "upload" ;
+    fuseki:serviceReadWriteGraphStore    "data" ;
+    fuseki:dataset           <#kg-tdb> .
 
-<#tdb> rdf:type tdb:DatasetTDB ;
+<#kg-tdb> rdf:type tdb:DatasetTDB ;
     tdb:location "db" .
+
+<#kg-rdfs> rdf:type fuseki:Service ;
+    fuseki:name              "kg-rdfs" ;
+    fuseki:serviceQuery      "sparql" ;
+    fuseki:serviceUpdate     "update" ;
+    fuseki:serviceUpload     "upload" ;
+    fuseki:serviceReadWriteGraphStore    "data" ;
+    fuseki:dataset           <#kg-rdfs-tdb> .
+
+<#kg-rdfs-tdb> rdf:type tdb:DatasetTDB ;
+    tdb:location "db" ;
+    ja:defaultGraph <#inferenceModel> .
+
+<#inferenceModel> rdf:type ja:InfModel ;
+     ja:reasoner [ ja:reasonerURL <http://jena.hpl.hp.com/2003/RDFSExptRuleReasoner> ];
+     ja:baseModel <#baseModel> .
+
+<#baseModel> rdf:type tdb:GraphTDB2 ;  # for example.
+     tdb:location "db2" .
