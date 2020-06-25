@@ -57,6 +57,7 @@ RUN chown -R jetty:jetty $JETTY_BASE/*
 
 WORKDIR $JETTY_BASE
 USER jetty
+VOLUME ["/var/lib/jetty/log", "/var/lib/jetty/db", "/var/lib/jetty/db2"]
 EXPOSE 8080
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
