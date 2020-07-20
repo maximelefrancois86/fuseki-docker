@@ -17,7 +17,7 @@ FROM jetty:latest
 MAINTAINER Maxime Lefrançois <maxime.lefrancois@emse.fr>
 
 USER root
-RUN yum -y install wget nano && rm -rf /var/cache/yum
+#RUN yum -y install wget nano && rm -rf /var/cache/yum
 
 # Update below according to https://jena.apache.org/download/
 ENV FUSEKI_SHA512 0a3ba1bb5704a3e2d9b0171f316f7696f306b9dec82c0fc35e7bc171076091688a825900475005b7e73d0efac206cca3af4ad025638b4a485e784f6977d53f60
