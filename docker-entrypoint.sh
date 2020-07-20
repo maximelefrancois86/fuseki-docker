@@ -15,7 +15,7 @@ if [ ! -f initialized ] ; then
   if [ ! -z "$FUSEKI_CONTEXT" ] ; then
     mv $JETTY_BASE/webapps/ROOT.war $JETTY_BASE/webapps/$FUSEKI_CONTEXT.war
   fi
-  sed -i "s/^admin=[^,\*]*/admin=$ADMIN_PASSWORD/" "$FUSEKI_BASE/shiro.ini"
+  sed -i "s/^admin=[^,\*]+/admin=$ADMIN_PASSWORD/" "$FUSEKI_BASE/shiro.ini"
   echo "admin=$ADMIN_PASSWORD"
   echo ""
   echo "###################################"
